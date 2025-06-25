@@ -2,11 +2,11 @@
 AOS.init();
 
 // URL API Spreadsheet
-const API_URL = 'https://script.google.com/macros/s/AKfycbwem5Vxpj-ttlLoijzw_LXqc_oCxJRSfz7Vvy0N6ecJRxZEbyPgmtmpo28XtWZevEPG/exec';
+const PROJECTS_API = 'https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6';
 
 // Fetch Projects
 document.addEventListener('DOMContentLoaded', () => {
-  fetch(`${API_URL}?sheet=Projects`)
+  fetch(PROJECTS_API)
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById('projects-list');
@@ -35,7 +35,7 @@ if (contactForm) {
     const formData = new FormData(this);
     const data = {};
     formData.forEach((value, key) => data[key] = value);
-    fetch(`${API_URL}?sheet=Contacts`, {
+    fetch(`https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/Contacts`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(data)
