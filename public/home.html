@@ -56,6 +56,32 @@
     </div>
   </section>
 
+  <!-- Portfolios Section -->
+  <section class="container mx-auto px-4 pb-16" data-aos="fade-up">
+    <h2 class="text-2xl font-bold mb-6">Portfolios</h2>
+    <div class="swiper portfolios-swiper">
+      <div class="swiper-wrapper" id="home-projects-list"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+    <div class="mt-4 text-center">
+      <a href="projects.html" class="inline-block px-6 py-2 bg-purple-600 text-white rounded-full shadow hover:bg-purple-700 transition dark:bg-gray-800">Lihat Semua</a>
+    </div>
+  </section>
+
+  <!-- Articles Section -->
+  <section class="container mx-auto px-4 pb-16" data-aos="fade-up">
+    <h2 class="text-2xl font-bold mb-6">Articles</h2>
+    <div class="swiper articles-swiper">
+      <div class="swiper-wrapper" id="home-articles-list"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+    <div class="mt-4 text-center">
+      <a href="articles.html" class="inline-block px-6 py-2 bg-purple-600 text-white rounded-full shadow hover:bg-purple-700 transition dark:bg-gray-800">Lihat Semua</a>
+    </div>
+  </section>
+
   <footer class="text-center py-6 text-gray-500 dark:text-gray-400">&copy; 2025 | Portofolio Afiyatna</footer>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
@@ -73,6 +99,54 @@
     document.getElementById('menu-toggle').onclick = () => {
       document.getElementById('mobile-menu').classList.toggle('hidden');
     };
+    // Fetch and render projects (Portfolios)
+    fetch('https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/Projects')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('home-projects-list');
+        if(!data.length) {
+          list.innerHTML = '<div class="swiper-slide text-center text-gray-500">No projects found.</div>';
+          return;
+        }
+        list.innerHTML = data.slice(0,4).map(project => `
+          <div class="swiper-slide bg-white dark:bg-gray-800 rounded-xl shadow p-4 flex flex-col hover:shadow-lg transition max-w-xs mx-auto">
+            <img src="${project.Gambar || ''}" alt="${project.Judul || ''}" class="rounded mb-3 w-full h-40 object-cover">
+            <h3 class="font-bold text-lg mb-1">${project.Judul || ''}</h3>
+            <p class="text-gray-500 text-sm mb-2">${project.Deskripsi || ''}</p>
+            ${project.Link ? `<a href="${project.Link}" target="_blank" class="text-purple-600 hover:underline font-semibold">Lihat Project</a>` : ''}
+          </div>
+        `).join('');
+        new Swiper('.portfolios-swiper', {
+          slidesPerView: 1,
+          spaceBetween: 24,
+          navigation: { nextEl: '.portfolios-swiper .swiper-button-next', prevEl: '.portfolios-swiper .swiper-button-prev' },
+          breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+        });
+      });
+    // Fetch and render articles
+    fetch('https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/Articles')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('home-articles-list');
+        if(!data.length) {
+          list.innerHTML = '<div class="swiper-slide text-center text-gray-500">No articles found.</div>';
+          return;
+        }
+        list.innerHTML = data.slice(0,4).map(article => `
+          <div class="swiper-slide bg-white dark:bg-gray-800 rounded-xl shadow p-4 flex flex-col hover:shadow-lg transition max-w-xs mx-auto">
+            <img src="${article.Gambar || ''}" alt="${article.Judul || ''}" class="rounded mb-3 w-full h-40 object-cover">
+            <h3 class="font-bold text-lg mb-1">${article.Judul || ''}</h3>
+            <p class="text-gray-500 text-sm mb-2">${article.Deskripsi || ''}</p>
+            ${article.Link ? `<a href="${article.Link}" target="_blank" class="text-purple-600 hover:underline font-semibold">Read More</a>` : ''}
+          </div>
+        `).join('');
+        new Swiper('.articles-swiper', {
+          slidesPerView: 1,
+          spaceBetween: 24,
+          navigation: { nextEl: '.articles-swiper .swiper-button-next', prevEl: '.articles-swiper .swiper-button-prev' },
+          breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+        });
+      });
   </script>
 </body>
 </html> 
