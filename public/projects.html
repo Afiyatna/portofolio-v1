@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects | Afiyatna</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .active { color: #8b5cf6; font-weight: bold; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+  <!-- Navbar -->
+  <nav class="fixed w-full bg-white dark:bg-gray-900 shadow z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <div class="font-bold text-2xl text-purple-700 dark:text-purple-400">afiyatna</div>
+      <div class="space-x-6 hidden md:block">
+        <a href="index.html#home" class="hover:text-purple-600 font-medium">Home</a>
+        <a href="index.html#about" class="hover:text-purple-600 font-medium">About</a>
+        <a href="projects.html" class="hover:text-purple-600 font-medium active">Projects</a>
+        <a href="index.html#articles" class="hover:text-purple-600 font-medium">Articles</a>
+        <a href="index.html#skills" class="hover:text-purple-600 font-medium">Skills</a>
+        <a href="index.html#contact" class="hover:text-purple-600 font-medium">Contact</a>
+      </div>
+      <button id="dark-toggle" class="ml-4 p-2 rounded bg-gray-200 dark:bg-gray-700">🌙</button>
+      <button id="menu-toggle" class="md:hidden ml-4 p-2 rounded bg-gray-200 dark:bg-gray-700">☰</button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+      <a href="index.html#home" class="block py-2">Home</a>
+      <a href="index.html#about" class="block py-2">About</a>
+      <a href="projects.html" class="block py-2 active">Projects</a>
+      <a href="index.html#articles" class="block py-2">Articles</a>
+      <a href="index.html#skills" class="block py-2">Skills</a>
+      <a href="index.html#contact" class="block py-2">Contact</a>
+    </div>
+  </nav>
+  <section class="pt-32 pb-16 container mx-auto" id="projects-page">
+    <h2 class="text-2xl font-bold mb-8">Projects</h2>
+    <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"></div>
+  </section>
+  <footer class="text-center py-6 text-gray-500 dark:text-gray-400">&copy; 2024 Afiyatna</footer>
+  <script>
+    // Fetch & render projects
+    fetch('https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/Projects')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('projects-grid');
+        container.innerHTML = '';
+        data.forEach(proj => {
+          container.innerHTML += `
+            <div class="bg-white dark:bg-gray-900 rounded-xl shadow p-4 flex flex-col h-full border border-gray-100 dark:border-gray-800">
+              <img src="${proj.Gambar || 'https://placehold.co/400x200'}" class="rounded mb-2 h-32 w-full object-cover">
+              <h3 class="font-bold text-lg mb-1 truncate">${proj.Judul || ''}</h3>
+              <p class="mb-2 text-sm text-gray-600 dark:text-gray-300 truncate">${proj.Deskripsi || ''}</p>
+              <a href="${proj.Link || '#'}" class="text-purple-600 hover:underline mt-2" target="_blank">Lihat</a>
+              <div class="mt-2 text-xs text-gray-500 dark:text-gray-400">${proj.Teknologi || ''}</div>
+            </div>
+          `;
+        });
+      });
+    // Dark mode toggle
+    const darkToggle = document.getElementById('dark-toggle');
+    darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    });
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+    }
+    // Responsive navbar
+    const menuToggle = document.getElementById('menu-toggle');
+    menuToggle.addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html> 
