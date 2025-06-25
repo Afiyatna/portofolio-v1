@@ -129,22 +129,26 @@ if (contactForm) {
     })
     .then(res => res.json())
     .then(() => {
-      document.getElementById('form-message').textContent = 'Pesan terkirim!';
+      const msg = document.getElementById('form-message');
+      if (msg) msg.textContent = 'Pesan terkirim!';
       contactForm.reset();
     })
     .catch(() => {
-      document.getElementById('form-message').textContent = 'Gagal mengirim pesan.';
+      const msg = document.getElementById('form-message');
+      if (msg) msg.textContent = 'Gagal mengirim pesan.';
     });
   });
 }
 
 // Dark mode toggle
 const darkToggle = document.getElementById('dark-toggle');
-darkToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-  localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-  if (window.AOS) AOS.refresh();
-});
+if (darkToggle) {
+  darkToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    if (window.AOS) AOS.refresh();
+  });
+}
 // Set theme on load
 if (localStorage.getItem('theme') === 'dark') {
   document.body.classList.add('dark');
@@ -160,15 +164,19 @@ navLinks.forEach(link => {
       window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
     }
     // Close mobile menu
-    document.getElementById('mobile-menu').classList.add('hidden');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) mobileMenu.classList.add('hidden');
   });
 });
 
 // Responsive navbar
 const menuToggle = document.getElementById('menu-toggle');
-menuToggle.addEventListener('click', () => {
-  document.getElementById('mobile-menu').classList.toggle('hidden');
-});
+if (menuToggle) {
+  menuToggle.addEventListener('click', () => {
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) mobileMenu.classList.toggle('hidden');
+  });
+}
 
 // Fetch About
 fetch(ABOUT_API)
