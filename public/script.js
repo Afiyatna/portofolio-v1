@@ -12,32 +12,34 @@ fetch(PROJECTS_API)
   .then(res => res.json())
   .then(data => {
     const container = document.getElementById('projects-list');
-    container.innerHTML = '';
-    if (!data.length) {
-      container.innerHTML = '<p class="text-gray-500 dark:text-gray-300">Belum ada projek.</p>';
-      return;
-    }
-    data.forEach(proj => {
-      container.innerHTML += `
-        <div class="swiper-slide">
-          <div class="bg-white dark:bg-gray-900 rounded-xl shadow p-4 flex flex-col h-full">
-            <img src="${proj.Gambar || 'https://placehold.co/400x200'}" class="rounded mb-2 h-32 w-full object-cover">
-            <h3 class="font-bold text-lg mb-1">${proj.Judul || ''}</h3>
-            <p class="mb-2 text-sm text-gray-600 dark:text-gray-300 flex-grow">${proj.Deskripsi || ''}</p>
-            <a href="${proj.Link || '#'}" class="text-purple-600 hover:underline mt-2" target="_blank">Lihat</a>
-            <div class="mt-2 text-xs text-gray-500 dark:text-gray-400">${proj.Teknologi || ''}</div>
+    if (container) {
+      container.innerHTML = '';
+      if (!data.length) {
+        container.innerHTML = '<p class="text-gray-500 dark:text-gray-300">Belum ada projek.</p>';
+        return;
+      }
+      data.forEach(proj => {
+        container.innerHTML += `
+          <div class="swiper-slide">
+            <div class="bg-white dark:bg-gray-900 rounded-xl shadow p-4 flex flex-col h-full">
+              <img src="${proj.Gambar || 'https://placehold.co/400x200'}" class="rounded mb-2 h-32 w-full object-cover">
+              <h3 class="font-bold text-lg mb-1">${proj.Judul || ''}</h3>
+              <p class="mb-2 text-sm text-gray-600 dark:text-gray-300 flex-grow">${proj.Deskripsi || ''}</p>
+              <a href="${proj.Link || '#'}" class="text-purple-600 hover:underline mt-2" target="_blank">Lihat</a>
+              <div class="mt-2 text-xs text-gray-500 dark:text-gray-400">${proj.Teknologi || ''}</div>
+            </div>
           </div>
-        </div>
-      `;
-    });
-    if (window.projectsSwiper) window.projectsSwiper.destroy(true, true);
-    window.projectsSwiper = new Swiper('.projects-swiper', {
-      slidesPerView: 1,
-      spaceBetween: 24,
-      navigation: { nextEl: '.projects-swiper .swiper-button-next', prevEl: '.projects-swiper .swiper-button-prev' },
-      breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
-    });
-    if (window.AOS) AOS.refresh();
+        `;
+      });
+      if (window.projectsSwiper) window.projectsSwiper.destroy(true, true);
+      window.projectsSwiper = new Swiper('.projects-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 24,
+        navigation: { nextEl: '.projects-swiper .swiper-button-next', prevEl: '.projects-swiper .swiper-button-prev' },
+        breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+      });
+      if (window.AOS) AOS.refresh();
+    }
   });
 
 // Render Articles
@@ -45,31 +47,33 @@ fetch(ARTICLES_API)
   .then(res => res.json())
   .then(data => {
     const container = document.getElementById('articles-list');
-    container.innerHTML = '';
-    if (!data.length) {
-      container.innerHTML = '<p class="text-gray-500 dark:text-gray-300">Belum ada artikel.</p>';
-      return;
-    }
-    data.forEach(article => {
-      container.innerHTML += `
-        <div class="swiper-slide">
-          <div class="bg-purple-400 rounded-xl shadow p-4 text-white flex flex-col h-full">
-            <img src="${article.Gambar || 'https://placehold.co/400x200/8b5cf6/fff?text=Article'}" class="rounded mb-2 h-32 w-full object-cover">
-            <h3 class="font-bold text-lg mb-1">${article.Judul || ''}</h3>
-            <p class="mb-2 text-sm flex-grow">${article.Deskripsi || ''}</p>
-            <a href="${article.Link || '#'}" class="underline text-white mt-2" target="_blank">Read More</a>
+    if (container) {
+      container.innerHTML = '';
+      if (!data.length) {
+        container.innerHTML = '<p class="text-gray-500 dark:text-gray-300">Belum ada artikel.</p>';
+        return;
+      }
+      data.forEach(article => {
+        container.innerHTML += `
+          <div class="swiper-slide">
+            <div class="bg-purple-400 rounded-xl shadow p-4 text-white flex flex-col h-full">
+              <img src="${article.Gambar || 'https://placehold.co/400x200/8b5cf6/fff?text=Article'}" class="rounded mb-2 h-32 w-full object-cover">
+              <h3 class="font-bold text-lg mb-1">${article.Judul || ''}</h3>
+              <p class="mb-2 text-sm flex-grow">${article.Deskripsi || ''}</p>
+              <a href="${article.Link || '#'}" class="underline text-white mt-2" target="_blank">Read More</a>
+            </div>
           </div>
-        </div>
-      `;
-    });
-    if (window.articlesSwiper) window.articlesSwiper.destroy(true, true);
-    window.articlesSwiper = new Swiper('.articles-swiper', {
-      slidesPerView: 1,
-      spaceBetween: 24,
-      navigation: { nextEl: '.articles-swiper .swiper-button-next', prevEl: '.articles-swiper .swiper-button-prev' },
-      breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
-    });
-    if (window.AOS) AOS.refresh();
+        `;
+      });
+      if (window.articlesSwiper) window.articlesSwiper.destroy(true, true);
+      window.articlesSwiper = new Swiper('.articles-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 24,
+        navigation: { nextEl: '.articles-swiper .swiper-button-next', prevEl: '.articles-swiper .swiper-button-prev' },
+        breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+      });
+      if (window.AOS) AOS.refresh();
+    }
   });
 
 // Render Skills
@@ -77,21 +81,23 @@ fetch(SKILLS_API)
   .then(res => res.json())
   .then(data => {
     const container = document.getElementById('skills-list');
-    container.innerHTML = '';
-    if (!data.length) {
-      container.innerHTML = '<p class="text-gray-500 dark:text-gray-300">Belum ada skill.</p>';
-      return;
+    if (container) {
+      container.innerHTML = '';
+      if (!data.length) {
+        container.innerHTML = '<p class="text-gray-500 dark:text-gray-300">Belum ada skill.</p>';
+        return;
+      }
+      data.forEach(skill => {
+        container.innerHTML += `
+          <div class="flex flex-col items-center bg-white dark:bg-gray-900 rounded-xl shadow p-4">
+            <img src="${skill.Icon || 'https://placehold.co/64x64'}" class="w-12 h-12 mb-2">
+            <div class="font-bold">${skill.Nama || ''}</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400">${skill.Level || ''}</div>
+          </div>
+        `;
+      });
+      if (window.AOS) AOS.refresh();
     }
-    data.forEach(skill => {
-      container.innerHTML += `
-        <div class="flex flex-col items-center bg-white dark:bg-gray-900 rounded-xl shadow p-4">
-          <img src="${skill.Icon || 'https://placehold.co/64x64'}" class="w-12 h-12 mb-2">
-          <div class="font-bold">${skill.Nama || ''}</div>
-          <div class="text-sm text-gray-500 dark:text-gray-400">${skill.Level || ''}</div>
-        </div>
-      `;
-    });
-    if (window.AOS) AOS.refresh();
   });
 
 // Render About (Hero)
@@ -99,9 +105,12 @@ fetch(ABOUT_API)
   .then(res => res.json())
   .then(data => {
     const about = data[0] || {};
-    document.querySelector('#home .text-xl.text-purple-600').textContent = about.Tagline || 'Semua tergantung mindset';
-    document.querySelector('#home .mb-6').textContent = about.Deskripsi || 'Web Developer';
-    document.querySelector('#home img[alt="Foto Profil"]').src = about.Foto || 'assets/profile.jpg';
+    const tagline = document.querySelector('#home .text-xl.text-purple-600');
+    const desc = document.querySelector('#home .mb-6');
+    const foto = document.querySelector('#home img[alt="Foto Profil"]');
+    if (tagline) tagline.textContent = about.Tagline || 'Semua tergantung mindset';
+    if (desc) desc.textContent = about.Deskripsi || 'Web Developer';
+    if (foto) foto.src = about.Foto || 'assets/profile.jpg';
     if (window.AOS) AOS.refresh();
   });
 
