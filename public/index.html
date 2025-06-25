@@ -37,76 +37,68 @@
     </div>
   </nav>
 
-  <!-- Header / Home -->
-  <section id="home" class="pt-32 pb-16 container mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-    <div class="flex-1">
-      <p class="text-lg mb-2">Halo 👋, I'm</p>
-      <h1 class="text-4xl md:text-5xl font-bold mb-2">Afiyatna</h1>
-      <p class="text-xl text-purple-600 font-semibold mb-2">Semua tergantung mindset</p>
-      <p class="mb-6 text-gray-700">Web Developer</p>
-      <a href="#contact" class="btn-primary">Contact Me</a>
-    </div>
-    <div class="flex-1 flex flex-col items-center relative">
-      <img src="assets/profile.jpg" alt="Foto Profil" class="w-56 h-56 object-cover rounded-2xl shadow-xl mb-4">
-      <div class="absolute top-4 left-0 bg-white rounded-full shadow px-4 py-2 flex items-center gap-2 text-sm font-medium"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" class="w-5 h-5"> LinkedIn</div>
-      <div class="absolute bottom-4 right-0 bg-white rounded-full shadow px-4 py-2 flex items-center gap-2 text-sm font-medium"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="w-5 h-5"> GitHub</div>
+  <!-- Home Section (Ringkasan) -->
+  <section id="home-section">
+    <div class="container mx-auto px-4 py-16">
+      <h2 class="text-2xl font-bold mb-8">Welcome</h2>
+      <div id="home-about-summary"></div>
+      <div id="home-projects-summary" class="mt-8"></div>
+      <div id="home-articles-summary" class="mt-8"></div>
+      <div id="home-skills-summary" class="mt-8"></div>
+      <div id="home-contact-summary" class="mt-8"></div>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="py-16">
-    <div class="container mx-auto px-4">
+  <!-- About Section (Detail) -->
+  <section id="about-section" class="hidden">
+    <div class="container mx-auto px-4 py-16">
       <h2 class="text-2xl font-bold mb-8">About</h2>
-      <div id="about-content" class="bg-white rounded-xl shadow p-8"></div>
+      <div id="about-content-detail"></div>
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
+  <!-- Projects Section (Detail) -->
+  <section id="projects-section" class="hidden">
+    <div class="container mx-auto px-4 py-16">
       <h2 class="text-2xl font-bold mb-8">Projects</h2>
-      <div class="swiper projects-swiper">
-        <div class="swiper-wrapper" id="projects-list">
-          <!-- Dummy Project Cards atau data dari script.js -->
-        </div>
+      <div class="swiper projects-swiper-detail">
+        <div class="swiper-wrapper" id="projects-list-detail"></div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
       </div>
     </div>
   </section>
 
-  <!-- Articles Section -->
-  <section id="articles" class="py-16">
-    <div class="container mx-auto px-4">
+  <!-- Articles Section (Detail) -->
+  <section id="articles-section" class="hidden">
+    <div class="container mx-auto px-4 py-16">
       <h2 class="text-2xl font-bold mb-8">Articles</h2>
-      <div class="swiper articles-swiper">
-        <div class="swiper-wrapper" id="articles-list">
-          <!-- Data dari script.js -->
-        </div>
+      <div class="swiper articles-swiper-detail">
+        <div class="swiper-wrapper" id="articles-list-detail"></div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
       </div>
     </div>
   </section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
+  <!-- Skills Section (Detail) -->
+  <section id="skills-section" class="hidden">
+    <div class="container mx-auto px-4 py-16">
       <h2 class="text-2xl font-bold mb-8">Skills</h2>
-      <div id="skills-list" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+      <div id="skills-list-detail" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
     </div>
   </section>
 
-  <!-- Contact Me Section -->
-  <section id="contact" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4 flex flex-col md:flex-row gap-8">
-      <form id="contact-form" class="flex-1 bg-white rounded-xl shadow p-8 space-y-4">
+  <!-- Contact Section (Detail) -->
+  <section id="contact-section" class="hidden">
+    <div class="container mx-auto px-4 py-16 flex flex-col md:flex-row gap-8">
+      <form id="contact-form-detail" class="flex-1 bg-white rounded-xl shadow p-8 space-y-4">
         <h2 class="text-2xl font-bold mb-4">Contact Me</h2>
         <input type="text" name="Nama" placeholder="Name" required class="w-full p-3 rounded border border-gray-300" />
         <input type="email" name="Email" placeholder="Email" required class="w-full p-3 rounded border border-gray-300" />
         <textarea name="Pesan" placeholder="Message" required class="w-full p-3 rounded border border-gray-300"></textarea>
         <button type="submit" class="w-full py-3 bg-purple-600 text-white rounded-full font-semibold hover:bg-purple-700 transition">Request Now</button>
-        <div id="form-message" class="text-center mt-2"></div>
+        <div id="form-message-detail" class="text-center mt-2"></div>
       </form>
       <div class="flex-1 bg-white rounded-xl shadow p-8 flex flex-col items-start justify-center">
         <h3 class="text-xl font-bold mb-4">Connect Me</h3>
