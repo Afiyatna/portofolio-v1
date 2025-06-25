@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skills | Afiyatna</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+  <!-- Navbar -->
+  <nav class="fixed w-full bg-white dark:bg-gray-900 shadow z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <div class="font-bold text-2xl text-purple-700 dark:text-purple-400">afiyatna</div>
+      <div class="space-x-6 hidden md:block">
+        <a href="home.html" class="hover:text-purple-600 font-medium">Home</a>
+        <a href="about.html" class="hover:text-purple-600 font-medium">About</a>
+        <a href="projects.html" class="hover:text-purple-600 font-medium">Projects</a>
+        <a href="articles.html" class="hover:text-purple-600 font-medium">Articles</a>
+        <a href="skills.html" class="hover:text-purple-600 font-medium text-purple-600 dark:text-purple-400">Skills</a>
+        <a href="contact.html" class="hover:text-purple-600 font-medium">Contact</a>
+      </div>
+      <button id="dark-toggle" class="ml-4 p-2 rounded bg-gray-200 dark:bg-gray-700">🌙</button>
+      <button id="menu-toggle" class="md:hidden ml-4 p-2 rounded bg-gray-200 dark:bg-gray-700">☰</button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+      <a href="home.html" class="block py-2">Home</a>
+      <a href="about.html" class="block py-2">About</a>
+      <a href="projects.html" class="block py-2">Projects</a>
+      <a href="articles.html" class="block py-2">Articles</a>
+      <a href="skills.html" class="block py-2 text-purple-600 dark:text-purple-400">Skills</a>
+      <a href="contact.html" class="block py-2">Contact</a>
+    </div>
+  </nav>
+
+  <section class="pt-32 pb-16 container mx-auto px-4" data-aos="fade-up">
+    <h1 class="text-3xl font-bold mb-8 text-center">Skills</h1>
+    <div id="skills-list" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+  </section>
+
+  <footer class="text-center py-6 text-gray-500 dark:text-gray-400">&copy; 2025 | Portofolio Afiyatna</footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true });
+    // Dark mode toggle
+    const darkToggle = document.getElementById('dark-toggle');
+    darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    });
+    if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+    // Mobile menu
+    document.getElementById('menu-toggle').onclick = () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    };
+    // Fetch and render skills
+    fetch('https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/Skills')
+      .then(res => res.json())
+      .then(data => {
+        const skillsList = document.getElementById('skills-list');
+        if(!data.length) {
+          skillsList.innerHTML = '<p class="col-span-full text-center text-gray-500">No skills found.</p>';
+          return;
+        }
+        skillsList.innerHTML = data.map(skill => `
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col items-center gap-2 hover:shadow-lg transition" data-aos="fade-up">
+            <img src="${skill.Icon || ''}" alt="${skill.Nama || ''}" class="w-12 h-12 mb-2">
+            <span class="font-semibold">${skill.Nama || ''}</span>
+          </div>
+        `).join('');
+      });
+  </script>
+</body>
+</html> 
