@@ -2,7 +2,7 @@
 // (AOS tidak digunakan lagi, jadi bisa dihapus jika tidak dipakai)
 
 // URL API - Google Apps Script
-const BASE_API_URL = 'https://script.google.com/macros/s/AKfycbyN6SHYYSorAQmvAhcMnHRRYuoMs_Uz6rhnA827S2gy1WEjppfZImXmgCMgyFHoMEfS/exec';
+const BASE_API_URL = 'https://script.google.com/macros/s/AKfycbx9Z71Bi71kzXLXxJKZ5t8ggYSbT6biKAsaOL2VUXGAp38pNdSiaPMKvJJjWGHiNA3h/exec';
 const PROJECTS_API = `${BASE_API_URL}?path=projects`;
 const ARTICLES_API = `${BASE_API_URL}?path=articles`;
 const SKILLS_API = `${BASE_API_URL}?path=skills`;
