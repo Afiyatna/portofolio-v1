@@ -58,8 +58,9 @@
     document.getElementById('menu-toggle').onclick = () => {
       document.getElementById('mobile-menu').classList.toggle('hidden');
     };
-    // Fetch and render skills
-    fetch('https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/Skills')
+    // Ganti semua fetch Sheet.best dengan Google Apps Script
+    const SKILLS_API = 'https://script.google.com/macros/s/AKfycbyN6SHYYSorAQmvAhcMnHRRYuoMs_Uz6rhnA827S2gy1WEjppfZImXmgCMgyFHoMEfS/exec?path=skills';
+    fetch(SKILLS_API)
       .then(res => res.json())
       .then(data => {
         const skillsList = document.getElementById('skills-list');

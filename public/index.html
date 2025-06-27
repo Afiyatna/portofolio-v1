@@ -99,8 +99,14 @@
     document.getElementById('menu-toggle').onclick = () => {
       document.getElementById('mobile-menu').classList.toggle('hidden');
     };
+    // Ganti semua fetch Sheet.best dengan Google Apps Script
+    const BASE_API_URL = 'https://script.google.com/macros/s/AKfycbyN6SHYYSorAQmvAhcMnHRRYuoMs_Uz6rhnA827S2gy1WEjppfZImXmgCMgyFHoMEfS/exec';
+    const PROJECTS_API = `${BASE_API_URL}?path=projects`;
+    const ARTICLES_API = `${BASE_API_URL}?path=articles`;
+    const SKILLS_API = `${BASE_API_URL}?path=skills`;
+    const ABOUT_API = `${BASE_API_URL}?path=about`;
     // Fetch and render projects (Portfolios)
-    fetch('https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/Projects')
+    fetch(PROJECTS_API)
       .then(res => res.json())
       .then(data => {
         const list = document.getElementById('home-projects-list');
@@ -124,7 +130,7 @@
         });
       });
     // Fetch and render articles
-    fetch('https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/Articles')
+    fetch(ARTICLES_API)
       .then(res => res.json())
       .then(data => {
         const list = document.getElementById('home-articles-list');

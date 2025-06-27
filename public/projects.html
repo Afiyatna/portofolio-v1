@@ -42,8 +42,10 @@
   </section>
   <footer class="text-center py-6 text-gray-500 dark:text-gray-400">&copy; 2025 | Portofolio Afiyatna</footer>
   <script>
+    // Ganti semua fetch Sheet.best dengan Google Apps Script
+    const PROJECTS_API = 'https://script.google.com/macros/s/AKfycbyN6SHYYSorAQmvAhcMnHRRYuoMs_Uz6rhnA827S2gy1WEjppfZImXmgCMgyFHoMEfS/exec?path=projects';
     // Fetch & render projects
-    fetch('https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/Projects')
+    fetch(PROJECTS_API)
       .then(res => res.json())
       .then(data => {
         const container = document.getElementById('projects-grid');

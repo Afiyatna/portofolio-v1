@@ -88,8 +88,9 @@ profile.jpg | Afiyatna N. Fauzan | Web Developer & Tech Enthusiast | afiyatna@gm
     document.getElementById('menu-toggle').onclick = () => {
       document.getElementById('mobile-menu').classList.toggle('hidden');
     };
-    // Fetch About data
-    fetch('https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/About')
+    // Ganti semua fetch Sheet.best dengan Google Apps Script
+    const ABOUT_API = 'https://script.google.com/macros/s/AKfycbyN6SHYYSorAQmvAhcMnHRRYuoMs_Uz6rhnA827S2gy1WEjppfZImXmgCMgyFHoMEfS/exec?path=about';
+    fetch(ABOUT_API)
       .then(res => res.json())
       .then(data => {
         if(!data.length) return;

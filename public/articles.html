@@ -61,8 +61,9 @@
       document.getElementById('mobile-menu').classList.toggle('hidden');
     };
     // Fetch and render articles
+    const ARTICLES_API = 'https://script.google.com/macros/s/AKfycbyN6SHYYSorAQmvAhcMnHRRYuoMs_Uz6rhnA827S2gy1WEjppfZImXmgCMgyFHoMEfS/exec?path=articles';
     const articlesList = document.getElementById('articles-list');
-    fetch('https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/Articles')
+    fetch(ARTICLES_API)
       .then(res => res.json())
       .then(data => {
         if(!data.length) {
