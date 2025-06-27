@@ -1,11 +1,13 @@
 // Inisialisasi AOS
 // (AOS tidak digunakan lagi, jadi bisa dihapus jika tidak dipakai)
 
-// URL API
-const PROJECTS_API = 'https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/Projects';
-const ARTICLES_API = 'https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/Articles';
-const SKILLS_API = 'https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/Skills';
-const ABOUT_API = 'https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/About';
+// URL API - Google Apps Script
+const BASE_API_URL = 'https://script.google.com/macros/s/AKfycbyN6SHYYSorAQmvAhcMnHRRYuoMs_Uz6rhnA827S2gy1WEjppfZImXmgCMgyFHoMEfS/exec';
+const PROJECTS_API = `${BASE_API_URL}?path=projects`;
+const ARTICLES_API = `${BASE_API_URL}?path=articles`;
+const SKILLS_API = `${BASE_API_URL}?path=skills`;
+const ABOUT_API = `${BASE_API_URL}?path=about`;
+const CONTACTS_API = BASE_API_URL;
 
 // Render Projects
 fetch(PROJECTS_API)
@@ -122,7 +124,7 @@ if (contactForm) {
     const formData = new FormData(this);
     const data = {};
     formData.forEach((value, key) => data[key] = value);
-    fetch('https://api.sheetbest.com/sheets/6836b365-b1b6-4996-81ed-5023ea3d5ec6/tabs/Contacts', {
+    fetch(CONTACTS_API, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(data)
